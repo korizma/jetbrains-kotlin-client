@@ -15,7 +15,7 @@ suspend fun tryRange(client: HttpClient, url: String, startIndex: Int): ByteArra
     return try {
         val response = client.get(url) 
         {
-            var endIndex = startIndex + 64 * 1024 - 1
+            var endIndex = startIndex + 64 * 1024
             headers {
                 header("Range", "bytes=$startIndex-$endIndex")
             }
@@ -64,5 +64,4 @@ suspend fun main() {
     val response = fetchData(url)
     val responseLen = response.size
     println("Resonse len: $responseLen")
-    // println(response.joinToString("") { "%02x".format(it) })
 }
